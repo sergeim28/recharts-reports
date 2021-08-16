@@ -12,6 +12,9 @@ export const DashboardCard = ({
 }) => {
   const middleTextColor =
     type === "warning" ? colors.darkPink : colors.darkGreen;
+  const graphColor =
+    type === "warning" ? colors.lightPink : colors.lightGreen;
+
   return (
     <div
       style={{
@@ -74,7 +77,7 @@ export const DashboardCard = ({
             zIndex: 0,
           }}
         >
-          <MyAreaChart />
+          <MyAreaChart color={graphColor}/>
         </div>
       </div>
     </div>

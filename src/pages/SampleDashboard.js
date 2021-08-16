@@ -1,6 +1,7 @@
 import React from "react";
 import { DashboardCard } from "../components/DashboardCard";
 import { DashboardTitleCard } from "../components/DashboardTitleCard";
+import { DashboardCardsData } from "../utils/mockData";
 
 export const SampleDashboard = () => {
   const submissionsRawData = [];
@@ -18,87 +19,41 @@ export const SampleDashboard = () => {
           display: "flex",
           gridGap: 8,
           flexFlow: "wrap",
-          margin: "auto",
         }}
       >
         <DashboardTitleCard
           title="Production KPIs"
           pathName="/productionKPIs"
         />
-        <DashboardCard
-          title="Submissions"
-          middleText="860"
-          bottomText="959"
-          bottomPercentage={-10.32}
-          type="warning"
-          rawData={submissionsRawData}
-        />
-        <DashboardCard
-          title="Submissions"
-          middleText="860"
-          bottomText="959"
-          bottomPercentage={-10.32}
-          type="warning"
-          rawData={submissionsRawData}
-        />
-        <DashboardCard
-          title="Submissions"
-          middleText="860"
-          bottomText="959"
-          bottomPercentage={-10.32}
-          type="warning"
-          rawData={submissionsRawData}
-        />
-        <DashboardCard
-          title="Submissions"
-          middleText="860"
-          bottomText="959"
-          bottomPercentage={-10.32}
-          type="warning"
-          rawData={submissionsRawData}
-        />
+        {DashboardCardsData.productionKPIs.map(({ type, title, middleText, bottomText, bottomPercentage }) => 
+          <DashboardCard
+            type={type}
+            title={title}
+            middleText={middleText}
+            bottomText={bottomText}
+            bottomPercentage={bottomPercentage}
+            rawData={submissionsRawData}
+          />
+        )}
       </div>
       <div
         style={{
           display: "flex",
           gridGap: 8,
           flexFlow: "wrap",
-          margin: "auto",
         }}
       >
         <DashboardTitleCard title="Claim KPIs" pathName="/claimKPIs" />
-        <DashboardCard
-          title="Submissions"
-          middleText="860"
-          bottomText="959"
-          bottomPercentage={-10.32}
-          type="warning"
-          rawData={submissionsRawData}
-        />
-        <DashboardCard
-          title="Submissions"
-          middleText="860"
-          bottomText="959"
-          bottomPercentage={-10.32}
-          type="warning"
-          rawData={submissionsRawData}
-        />
-        <DashboardCard
-          title="Submissions"
-          middleText="860"
-          bottomText="959"
-          bottomPercentage={-10.32}
-          type="warning"
-          rawData={submissionsRawData}
-        />
-        <DashboardCard
-          title="Submissions"
-          middleText="860"
-          bottomText="959"
-          bottomPercentage={-10.32}
-          type="warning"
-          rawData={submissionsRawData}
-        />
+        {DashboardCardsData.claimsKPIs.map(({ type, title, middleText, bottomText, bottomPercentage }) => 
+          <DashboardCard
+            type={type}
+            title={title}
+            middleText={middleText}
+            bottomText={bottomText}
+            bottomPercentage={bottomPercentage}
+            rawData={submissionsRawData}
+          />
+        )}
       </div>
     </div>
   );

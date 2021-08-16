@@ -1,6 +1,5 @@
 import React from "react";
 import { AreaChart, Area, Tooltip, ResponsiveContainer } from "recharts";
-import { colors } from "../utils/constants";
 import { MyTooltip } from "./MyTooltip";
 
 const data = [
@@ -58,7 +57,7 @@ const data = [
   },
 ];
 
-export const MyAreaChart = () => {
+export const MyAreaChart = ({ color }) => {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <AreaChart
@@ -74,7 +73,7 @@ export const MyAreaChart = () => {
         <Area
           type="monotone"
           dataKey="uv"
-          fill={colors.lightPink}
+          fill={color}
           strokeWidth={0}
           fillOpacity={1}
         />
