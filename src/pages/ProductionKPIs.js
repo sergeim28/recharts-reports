@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { MyLineChart } from "../components/MyLineChart";
 import { MyHorizontalBarChart } from "../components/MyHorizontalBarChart";
 import VerticalText from "../components/VerticalText";
@@ -12,6 +13,15 @@ export const ProductionKPIs = () => {
         flexDirection: "row",
       }}
     >
+      <Link to="/" style={{
+        fontSize: 14,
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        color: 'white'
+      }}>
+        Back to Dashboard
+      </Link>
       <div>
         <div
           style={{
