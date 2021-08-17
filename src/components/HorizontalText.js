@@ -10,7 +10,7 @@ const HorizontalText = ({ text }) => {
         textOverflow: "ellipsis",
         overflow: "hidden",
         whiteSpace: "nowrap",
-        textAlign: "left"
+        textAlign: "center"
       }}
     >
       {text}

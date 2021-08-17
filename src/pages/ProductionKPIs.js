@@ -26,9 +26,9 @@ export const ProductionKPIs = () => {
   }, [setFilters])
 
   return (
-    <div
-      className="main-section"
-    >
+    <div style={{
+      width: '100%'
+    }}>
       <Link to="/" style={{
         fontSize: 14,
         position: 'absolute',
@@ -128,11 +128,7 @@ export const ProductionKPIs = () => {
         </div>
       </div>
       <div 
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          width: '100%'
-        }}
+        className="main-section"
       >
         <div 
           style={{

@@ -6,7 +6,7 @@ const VerticalText = ({text}) => {
       style={{
         position: 'absolute',
         left: 0,
-        bottom: 0,
+        bottom: 30,
         top:0,
         minWidth: 22,
         transform: "rotate(-180deg)",
