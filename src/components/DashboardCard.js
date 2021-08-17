@@ -53,6 +53,7 @@ export const DashboardCard = ({
             fontWeight: 600,
             marginTop: "auto",
             zIndex: 1,
+            textAlign: "center",
           }}
         >
           {middleText}
@@ -64,6 +65,7 @@ export const DashboardCard = ({
             fontWeight: 500,
             zIndex: 1,
             marginBottom: 8,
+            textAlign: "center",
           }}
         >
           Prev. month: {bottomText} ({bottomPercentage}%)

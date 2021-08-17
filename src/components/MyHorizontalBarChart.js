@@ -10,47 +10,48 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { tickStyle } from "../utils/constants";
+import { numberToMoneyString } from "../utils/helper";
 import { MyTooltip } from "./MyTooltip";
 
 const data = [
   {
-    name: "Page A",
-    uv: 100,
+    name: "Submission",
+    spend: 1100,
     pv: 0,
     amt: 0,
   },
   {
-    name: "Page B",
-    uv: 80,
-    pv: 10,
-    amt: 10,
+    name: "Quote",
+    spend: 900,
+    pv: 100,
+    amt: 100,
   },
   {
-    name: "Page C",
-    uv: 60,
-    pv: 20,
-    amt: 20,
+    name: "Bind",
+    spend: 500,
+    pv: 300,
+    amt: 300,
   },
 ];
 
 const renderCustomizedLabel = (props) => {
-  const { content, ...rest } = props;
+  const { content, value, ...rest } = props;
 
-  return <Label {...rest} fontSize="12" fill="#FFFFFF" fontWeight="Bold" />;
+  return <Label {...rest} value={'$' + numberToMoneyString(value)} fontSize="12" fill="#FFFFFF" fontWeight="bold" />;
 };
 
 export const MyHorizontalBarChart = () => {
   return (
-    <ResponsiveContainer width="100%" height="100%">
+    <ResponsiveContainer width="99%" aspect={3}  debounce={1}>
       <BarChart
         width={500}
         height={300}
         data={data}
         margin={{
-          top: 20,
+          top: 0,
           right: 30,
-          left: 20,
-          bottom: 5,
+          left: 0,
+          bottom: 30,
         }}
         layout="vertical"
       >
@@ -63,11 +64,11 @@ export const MyHorizontalBarChart = () => {
           tick={tickStyle}
           axisLine={false}
         />
-        <Tooltip cursor={{ fill: "#FFFFFF30" }} content={<MyTooltip color="#82ca9d" />} />
+        <Tooltip cursor={{ fill: "#FFFFFF30" }} content={<MyTooltip color="#82ca9d" overrideParams={["spend"]} />} />
         <Bar dataKey="pv" stackId="a" fill="transparent " />
-        <Bar dataKey="uv" stackId="a" fill="#82ca9d">
+        <Bar dataKey="spend" stackId="a" fill="#82ca9d">
           <LabelList
-            dataKey="pv"
+            dataKey="spend"
             position="center"
             content={renderCustomizedLabel}
           />

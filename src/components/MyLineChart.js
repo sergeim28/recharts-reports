@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   LineChart,
   Line,
@@ -8,71 +8,62 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { tickStyle } from "../utils/constants";
+import { colors, MAXINT, tickStyle } from "../utils/constants";
+import { numberToMoneyString } from "../utils/helper";
+import { lineChartData } from "../utils/mockData";
 import { MyTooltip } from "./MyTooltip";
 
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+export const MyLineChart = ({ symbol, dataKey, filters }) => {
+  const [chartData, setChartData] = useState(lineChartData)
+  const [min, setMin] = useState(MAXINT)
+  const [max, setMax] = useState(-1)
 
-export const MyLineChart = () => {
+  useEffect(() => {
+    setChartData(prev => {
+      return prev.map((item) => ({
+        name: item.name,
+        spend: Math.floor(item.spend + Math.random() * 100 * (Math.round(Math.random()) ? 1 : -1)),
+        percentage: Math.min(100, Math.floor(item.percentage + Math.random() * 10 * (Math.round(Math.random()) ? 1 : -1))),
+      }))
+    })
+  }, [filters])
+
+  useEffect(() => {
+    let minV = MAXINT, maxV = -1;
+    for (let i = 0 ;  i < chartData.length ; i ++ ) {
+      if (minV > chartData[i][dataKey]) { minV = chartData[i][dataKey]; }
+      if (maxV < chartData[i][dataKey]) { maxV = chartData[i][dataKey]; }
+    }
+    setMin(minV)
+    setMax(maxV)
+  }, [dataKey, chartData])
+  
+  const ticks = useMemo(() => [Math.floor(min), Math.floor(min + (max-min) / 3), Math.floor(min + (max-min) / 3 * 2) , Math.floor(max)], [min, max]);
+
+  const tickFormatter = (value) => {
+    if (symbol === '$') {
+      return '$' + numberToMoneyString(value)
+    } else {
+      return value + '%'
+    }
+  }
+
   return (
-    <ResponsiveContainer width="100%" height="100%">
+    <ResponsiveContainer width="100%"  aspect={2}>
       <LineChart
-        data={data}
+        data={chartData}
         margin={{
           top: 10,
           right: 10,
-          left: 10,
-          bottom: 50,
+          left: 0,
+          bottom: 0,
         }}
       >
         <CartesianGrid strokeDasharray="3 3" vertical={false} />
         <XAxis dataKey="name" tick={tickStyle} />
-        <YAxis tick={tickStyle} />
-        <Tooltip content={<MyTooltip color="#8884d8" />} />
-        <Line dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
+        <YAxis tick={tickStyle} ticks={ticks} domain={[min, max]} tickFormatter= {tickFormatter}/>
+        <Tooltip content={<MyTooltip color={colors.sea} />} />
+        <Line dataKey={dataKey} stroke={colors.sea} activeDot={{ r: 6 }} />
       </LineChart>
     </ResponsiveContainer>
   );

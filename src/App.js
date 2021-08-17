@@ -7,20 +7,18 @@ import { ClaimKPIs } from "./pages/ClaimKPIs";
 function App() {
   return (
     <Router>
-      <div className="App">
-        <div className="main">
-          <Switch>
-            <Route path="/productionKPIs">
-              <ProductionKPIs />
-            </Route>
-            <Route path="/claimKPIs">
-              <ClaimKPIs />
-            </Route>
-            <Route path="/" exact>
-              <SampleDashboard />
-            </Route>
-          </Switch>
-        </div>
+      <div className="main">
+        <Switch>
+          <Route path="/productionKPIs">
+            <ProductionKPIs />
+          </Route>
+          <Route path="/claimKPIs">
+            <ClaimKPIs />
+          </Route>
+          <Route path="/" exact>
+            <SampleDashboard />
+          </Route>
+        </Switch>
       </div>
     </Router>
   );

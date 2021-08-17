@@ -1,4 +1,5 @@
 import React from "react";
+import { numberToMoneyString } from "../utils/helper";
 
 const MyTooltipRow = ({ value, label, color }) => {
   return (
@@ -12,17 +13,23 @@ const MyTooltipRow = ({ value, label, color }) => {
 };
 
 export const MyTooltip = (props) => {
-  const { active, payload, label, color } = props;
+  const { active, payload, label, color, overrideParams } = props;
   if (!payload) return null;
 
+  const filteredPayload = overrideParams ? payload.filter(item => {
+    return overrideParams.includes(item.name)
+  }) : payload;
+
+
   if (active) {
-    let rows = payload.map((item) => {
+    let rows = filteredPayload.map((item) => {
+      const parsedValue = item.name === 'spend' ? '$' + numberToMoneyString(item.value) : item.value + '%'
       return (
         <MyTooltipRow
           key={`${item.name}-tooltip-item`}
           label={label}
           color={color}
-          value="10%"
+          value={parsedValue}
         />
       );
     });

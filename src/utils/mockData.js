@@ -48,3 +48,42 @@ export const DashboardCardsData = {
         },
     ]
 }
+
+
+export const lineChartData = [
+  {
+    name: "June 6",
+    spend: 900,
+    percentage: 44,
+  },
+  {
+    name: "June 9",
+    spend: 1500,
+    percentage: 60,
+  },
+  {
+    name: "June 10",
+    spend: 1100,
+    percentage: 80,
+  },
+  {
+    name: "June 15",
+    spend: 1300,
+    percentage: 50,
+  },
+  {
+    name: "June 19",
+    spend: 1000,
+    percentage: 48,
+  },
+  {
+    name: "June 20",
+    spend: 950,
+    percentage: 60,
+  },
+  {
+    name: "June 21",
+    spend: 1200,
+    percentage: 70,
+  },
+];

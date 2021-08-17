@@ -4,13 +4,13 @@ const VerticalText = ({text}) => {
   return (
     <p
       style={{
-        height: "215px",
-        position: "absolute",
-        bottom: "80px",
-        left: "10px",
-        margin: 0,
+        position: 'absolute',
+        left: 0,
+        bottom: 0,
+        top:0,
+        minWidth: 22,
         transform: "rotate(-180deg)",
-        fontSize: "18px",
+        fontSize: 18,
         writingMode: "vertical-rl",
         textOrientation: "mixed",
         textOverflow: "ellipsis",

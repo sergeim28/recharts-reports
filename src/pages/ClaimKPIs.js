@@ -29,7 +29,7 @@ export const ClaimKPIs = () => {
           }}
         >
           <HorizontalText text="Claims ratio, rolling 28 days" />
-          <MyLineChart />
+          <MyLineChart symbol='$' dataKey="spend" />
         </div>
         <div
           style={{
@@ -39,7 +39,7 @@ export const ClaimKPIs = () => {
           }}
         >
           <HorizontalText text="Payout ratio (paid claims to bind premiums)" />
-          <MyLineChart />
+          <MyLineChart symbol='%' dataKey="percentage" />
         </div>
       </div>
     </div>
