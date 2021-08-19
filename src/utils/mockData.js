@@ -52,38 +52,79 @@ export const DashboardCardsData = {
 
 export const lineChartData = [
   {
+    source: "direct",
     name: "June 6",
     spend: 900,
     percentage: 44,
   },
   {
+    source: "broker",
     name: "June 9",
     spend: 1500,
     percentage: 60,
   },
   {
+    source: "direct",
     name: "June 10",
     spend: 1100,
     percentage: 80,
   },
   {
+    source: "direct",
     name: "June 15",
     spend: 1300,
     percentage: 50,
   },
   {
+    source: "broker",
     name: "June 19",
     spend: 1000,
     percentage: 48,
   },
   {
+    source: "direct",
     name: "June 20",
     spend: 950,
     percentage: 60,
   },
   {
+    source: "broker",
     name: "June 21",
     spend: 1200,
     percentage: 70,
   },
 ];
+
+
+export const productionReportRawMetrics = [
+  {
+    source: 'broker',
+    funnel: 'submission',
+    spend: 1937
+  },
+  {
+    source: 'broker',
+    funnel: 'quote',
+    spend: 1721
+  },
+  {
+    source: 'broker',
+    funnel: 'bind',
+    spend: 1004
+  },
+  {
+    source: 'direct',
+    funnel: 'submission',
+    spend: 1009
+  },
+  {
+    source: 'direct',
+    funnel: 'quote',
+    spend: 902
+  },
+  {
+    source: 'direct',
+    funnel: 'bind',
+    spend: 484
+  },
+]

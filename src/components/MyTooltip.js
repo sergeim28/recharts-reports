@@ -22,11 +22,11 @@ export const MyTooltip = (props) => {
 
 
   if (active) {
-    let rows = filteredPayload.map((item) => {
+    let rows = filteredPayload.map((item, index) => {
       const parsedValue = item.name === 'spend' ? '$' + numberToMoneyString(item.value) : item.value + '%'
       return (
         <MyTooltipRow
-          key={`${item.name}-tooltip-item`}
+          key={`${index}-tooltip-item`}
           label={label}
           color={color}
           value={parsedValue}

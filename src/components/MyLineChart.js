@@ -19,13 +19,23 @@ export const MyLineChart = ({ symbol, dataKey, filters }) => {
   const [max, setMax] = useState(-1)
 
   useEffect(() => {
-    setChartData(prev => {
-      return prev.map((item) => ({
+    let itemKey = "";
+    for (let key in filters) {
+      if(filters[key]) {
+        itemKey = key;
+        break;
+      }
+    }
+    const tmpChartData = [];
+    lineChartData.forEach((item) => {
+      if(item.source !== itemKey && itemKey !== "all") return;
+      tmpChartData.push({
         name: item.name,
         spend: Math.floor(item.spend + Math.random() * 100 * (Math.round(Math.random()) ? 1 : -1)),
-        percentage: Math.min(100, Math.floor(item.percentage + Math.random() * 10 * (Math.round(Math.random()) ? 1 : -1))),
-      }))
+        percentage: Math.min(100, Math.floor(item.percentage + Math.random() * 10 * (Math.round(Math.random()) ? 1 : -1)))
+      })
     })
+    setChartData(tmpChartData);
   }, [filters])
 
   useEffect(() => {

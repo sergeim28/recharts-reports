@@ -5,23 +5,24 @@ import { MyHorizontalBarChart } from "../components/MyHorizontalBarChart";
 import VerticalText from "../components/VerticalText";
 import HorizontalText from "../components/HorizontalText";
 
+const initialFilters = {
+  all: false,
+  broker: false,
+  direct: false
+};
+
 export const ProductionKPIs = () => {
 
   const [filters, setFilters] = useState({
-    eo: true,
-    do: true,
-    epli: true,
     all: true,
-    broker: true,
-    direct: true,
+    broker: false,
+    direct: false,
   })
   const handleInputChange = useCallback((event) => {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
+    const name = event.target.name;
     setFilters(prev => ({
-      ...prev,
-      [name]: value
+      ...initialFilters,
+      [name]: true
     }))
   }, [setFilters])
 
@@ -61,69 +62,33 @@ export const ProductionKPIs = () => {
           marginLeft: 20,
           width: 300
         }}> 
-          <span>Product</span>
-          <div>
-            <input 
-              type="checkbox" 
-              name="do" 
-              checked={filters["do"]} 
-              onChange={handleInputChange}
-            />
-            <label for="do">D&O</label>
-          </div>
-          <div>
-            <input 
-              type="checkbox" 
-              name="eo" 
-              checked={filters['eo']} 
-              onChange={handleInputChange}
-            />
-            <label for="eo">E&O</label>
-          </div>
-          <div>
-            <input 
-              type="checkbox" 
-              name="epli" 
-              checked={filters['epli']} 
-              onChange={handleInputChange}
-            />
-            <label for="epli">EPLI</label>
-          </div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          fontSize: 16,
-          marginLeft: 20,
-          width: 300
-        }}> 
           <span>Source of Submission</span>
           <div>
             <input 
-              type="checkbox" 
+              type="radio" 
               name="all" 
               checked={filters['all']} 
               onChange={handleInputChange} 
             />
-            <label for="all">All</label>
+            <label htmlFor="all">All</label>
           </div>
           <div>
             <input 
-              type="checkbox" 
+              type="radio" 
               name="broker" 
               checked={filters['broker']} 
               onChange={handleInputChange} 
             />
-            <label for="broker">Broker</label>
+            <label htmlFor="broker">Broker</label>
           </div>
           <div>
             <input 
-              type="checkbox" 
+              type="radio" 
               name="direct" 
               checked={filters['direct']} 
               onChange={handleInputChange} 
             />
-            <label for="direct">Direct</label>
+            <label htmlFor="direct">Direct</label>
           </div>
         </div>
       </div>
@@ -137,7 +102,7 @@ export const ProductionKPIs = () => {
             minWidth: 0
           }}
         >
-            <MyHorizontalBarChart />
+            <MyHorizontalBarChart filters={filters}/>
         </div>
         <div 
           style={{
