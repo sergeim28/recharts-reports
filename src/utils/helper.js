@@ -1,3 +1,5 @@
 export const numberToMoneyString = (value) => {
-	return value.toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+	const regExp = /\d(?=(\d{3})+,)/g;
+	const replacePattern = '$&.';
+	return value.toFixed(1).split('.').join(',').replace(regExp, replacePattern)
 }
