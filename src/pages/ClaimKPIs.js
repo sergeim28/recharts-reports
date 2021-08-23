@@ -3,41 +3,37 @@ import { Link } from "react-router-dom";
 import { MyLineChart } from "../components/MyLineChart";
 import HorizontalText from "../components/HorizontalText";
 
+const styles = {
+  root: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  topLink: {
+    fontSize: 14,
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    color: 'white'
+  },
+  horizontalTextContainer: {
+    position: "relative",
+    width: 500,
+    height: 300,
+  }
+}
+
 export const ClaimKPIs = () => {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-      }}
-    >
-      <Link to="/" style={{
-        fontSize: 14,
-        position: 'absolute',
-        top: 10,
-        right: 10,
-        color: 'white'
-      }}>
+    <div style={styles.root}>
+      <Link to="/" style={styles.topLink}>
         Back to Dashboard
       </Link>
       <div>
-        <div
-          style={{
-            position: "relative",
-            width: 500,
-            height: 300,
-          }}
-        >
+        <div style={styles.horizontalTextContainer}>
           <HorizontalText text="Claims ratio, rolling 28 days" />
           <MyLineChart symbol='$' dataKey="spend" />
         </div>
-        <div
-          style={{
-            position: "relative",
-            width: 500,
-            height: 300,
-          }}
-        >
+        <div style={styles.horizontalTextContainer}>
           <HorizontalText text="Payout ratio (paid claims to bind premiums)" />
           <MyLineChart symbol='%' dataKey="percentage" />
         </div>
