@@ -27,7 +27,6 @@ const styles = {
   },
   middleText: {
     fontSize: 64,
-    color: middleTextColor,
     fontWeight: 600,
     marginTop: "auto",
     zIndex: 1,
@@ -56,7 +55,6 @@ export const DashboardCard = ({
   bottomText,
   bottomPercentage,
   type,
-  rawData,
 }) => {
   const middleTextColor =
     type === "warning" ? colors.darkPink : colors.darkGreen;
@@ -69,7 +67,10 @@ export const DashboardCard = ({
         {title}
       </span>
       <div style={styles.middleContainer}>
-        <span style={styles.middleText}>
+        <span style={{ 
+          ...styles.middleText, 
+          color: middleTextColor,
+        }}>
           {middleText}
         </span>
         <span style={styles.bottomText}>
