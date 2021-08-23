@@ -23,6 +23,11 @@ const styles = {
 }
 
 export const ClaimKPIs = () => {
+  const filters = {
+    all: true,
+    broker: false,
+    direct: false,
+  }
   return (
     <div style={styles.root}>
       <Link to="/" style={styles.topLink}>
@@ -31,11 +36,11 @@ export const ClaimKPIs = () => {
       <div>
         <div style={styles.horizontalTextContainer}>
           <HorizontalText text="Claims ratio, rolling 28 days" />
-          <MyLineChart symbol='$' dataKey="spend" />
+          <MyLineChart symbol='$' dataKey="spend" filters={filters} />
         </div>
         <div style={styles.horizontalTextContainer}>
           <HorizontalText text="Payout ratio (paid claims to bind premiums)" />
-          <MyLineChart symbol='%' dataKey="percentage" />
+          <MyLineChart symbol='%' dataKey="percentage" filters={filters} />
         </div>
       </div>
     </div>
